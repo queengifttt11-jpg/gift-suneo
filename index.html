@@ -1,0 +1,3167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff5f8f">
+
+<title>DARI SUNEO💗</title>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;600;700&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   COLOR SYSTEM - PINK
+========================================================= */
+
+:root {
+  --pink: #ff5f8f;
+  --pink-dark: #e83e73;
+  --pink-deep: #c9275d;
+  --pink-light: #ff8fb0;
+  --pink-soft: #ffe4ed;
+  --pink-pale: #fff5f8;
+  --pink-border: #ffb4c9;
+  --pink-shadow: #ffd0dd;
+
+  --white: #ffffff;
+  --text: #5a2638;
+  --muted: #8f6172;
+
+  --danger: #e53935;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  padding: 14px;
+
+  display: grid;
+  place-items: center;
+
+  overflow-x: hidden;
+
+  font-family: "Nunito", sans-serif;
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      #ffffff 0 3px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      #ffb4c9 0 4px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255,255,255,.8) 0 2px,
+      transparent 3px
+    ),
+    linear-gradient(
+      145deg,
+      #ffe9f0,
+      #ffd2df,
+      #fff3f7
+    );
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  z-index: 100;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+  width: 100%;
+  max-width: 390px;
+  min-height: 600px;
+
+  position: relative;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  border: 5px solid white;
+  border-radius: 30px;
+
+  background: #fffafd;
+
+  box-shadow:
+    0 25px 70px rgba(201, 39, 93, .22);
+}
+
+.app::before,
+.app::after {
+  content: "";
+
+  position: absolute;
+  z-index: -1;
+
+  width: 125px;
+  height: 125px;
+
+  border-radius: 50%;
+
+  background: #ffe1eb;
+}
+
+.app::before {
+  top: 100px;
+  left: -75px;
+}
+
+.app::after {
+  right: -75px;
+  bottom: 70px;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 19px 13px;
+}
+
+.brand {
+  color: var(--pink-dark);
+
+  font-size: 13px;
+  font-weight: 900;
+
+  letter-spacing: .5px;
+}
+
+.top-heart {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  color: var(--pink-dark);
+
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.counter {
+  padding: 6px 12px;
+
+  background: var(--pink-soft);
+
+  border: 1px solid var(--pink-border);
+
+  border-radius: 30px;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  color: var(--pink-deep);
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress {
+  height: 5px;
+  margin: 0 19px;
+
+  background: #ffe2eb;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 14.28%;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff9fbb,
+      #ff5f8f,
+      #e83e73
+    );
+
+  transition: width .5s ease;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+  display: none;
+
+  min-height: 510px;
+
+  padding: 25px 20px 28px;
+
+  text-align: center;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page.active {
+  display: flex;
+  animation: pageEnter .45s ease both;
+}
+
+@keyframes pageEnter {
+
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   TAG
+========================================================= */
+
+.tag {
+  padding: 7px 13px;
+
+  border-radius: 30px;
+
+  background: var(--pink-soft);
+
+  border: 1px dashed var(--pink-border);
+
+  color: var(--pink-dark);
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 1.4px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   USER ICON
+========================================================= */
+
+.sticker-wrap {
+  width: 155px;
+  height: 155px;
+
+  margin: 20px auto 15px;
+
+  display: grid;
+  place-items: center;
+
+  position: relative;
+
+  border-radius: 45%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff7fa,
+      #ffe0e9
+    );
+
+  border: 2px dashed var(--pink);
+
+  box-shadow: 0 8px 0 #ffd4df;
+
+  animation: stickerFloat 3s ease-in-out infinite;
+}
+
+.sticker-wrap::before {
+  content: "✦";
+
+  position: absolute;
+
+  top: 5px;
+  right: 7px;
+
+  color: var(--pink);
+
+  font-size: 22px;
+}
+
+.sticker-wrap::after {
+  content: "✧";
+
+  position: absolute;
+
+  bottom: 8px;
+  left: 7px;
+
+  color: var(--pink);
+
+  font-size: 20px;
+}
+
+@keyframes stickerFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(2deg);
+  }
+
+}
+
+.sticker {
+  width: 84%;
+  height: 84%;
+
+  object-fit: contain;
+
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1 {
+  font-size: clamp(27px, 8vw, 34px);
+
+  font-weight: 900;
+
+  line-height: 1.2;
+
+  letter-spacing: -.7px;
+
+  margin: 15px 0 12px;
+}
+
+h1 span {
+  color: var(--pink);
+}
+
+.description {
+  max-width: 285px;
+
+  font-family: "Quicksand", sans-serif;
+
+  font-size: 13px;
+
+  line-height: 1.9;
+
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.primary,
+.secondary {
+  width: 100%;
+  max-width: 275px;
+
+  min-height: 49px;
+
+  padding: 13px 18px;
+
+  margin-top: 20px;
+
+  border-radius: 15px;
+
+  font-size: 13px;
+  font-weight: 900;
+
+  transition:
+    transform .15s,
+    box-shadow .15s;
+}
+
+.primary {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff91b0,
+      #ff5f8f,
+      #e83e73
+    );
+
+  box-shadow:
+    0 6px 0 #c9275d,
+    0 10px 20px rgba(232, 62, 115, .25);
+}
+
+.primary:active {
+  transform: translateY(4px);
+
+  box-shadow:
+    0 2px 0 #c9275d;
+}
+
+.secondary {
+  margin-top: 12px;
+
+  background: white;
+
+  border: 1px solid var(--pink-border);
+
+  color: var(--pink-dark);
+}
+
+.secondary:active {
+  transform: scale(.98);
+}
+
+.note {
+  font-size: 10px;
+
+  color: #aa7185;
+
+  margin-top: 18px;
+
+  letter-spacing: .5px;
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.password-card {
+  width: 100%;
+
+  margin-top: 17px;
+
+  padding: 18px 15px;
+
+  border-radius: 23px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff8fa,
+      #ffe8ef
+    );
+
+  border: 1px solid #ffc4d4;
+
+  box-shadow: 0 7px 0 #ffdce6;
+}
+
+.lock-icon {
+  width: 92px;
+  height: 92px;
+
+  margin: 0 auto 13px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff1f6,
+      #ffd5e2
+    );
+
+  border: 2px dashed var(--pink);
+
+  overflow: hidden;
+}
+
+.lock-icon img {
+  width: 82%;
+  height: 82%;
+
+  object-fit: contain;
+}
+
+.pin-display {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin: 13px 0 15px;
+}
+
+.pin-dot {
+  width: 13px;
+  height: 13px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 2px solid #ffb4c9;
+
+  transition: .2s;
+}
+
+.pin-dot.active {
+  background: var(--pink);
+
+  border-color: var(--pink);
+
+  transform: scale(1.12);
+
+  box-shadow:
+    0 0 8px rgba(255,95,143,.35);
+}
+
+.pin-dot.error {
+  background: #ef5350;
+  border-color: #ef5350;
+}
+
+.keypad {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 8px;
+
+  max-width: 255px;
+
+  margin: auto;
+}
+
+.key {
+  min-height: 43px;
+
+  border-radius: 13px;
+
+  background: white;
+
+  border: 1px solid #ffc6d5;
+
+  color: var(--pink-deep);
+
+  font-size: 15px;
+
+  font-weight: 900;
+
+  box-shadow: 0 3px 0 #ffdce6;
+
+  transition: .12s;
+}
+
+.key:active {
+  transform: translateY(3px);
+
+  box-shadow: 0 0 0 #ffdce6;
+}
+
+.key.clear {
+  color: var(--danger);
+}
+
+.key.enter {
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff91b0,
+      #ff5f8f
+    );
+
+  border-color: transparent;
+}
+
+.pin-message {
+  min-height: 18px;
+
+  margin-top: 10px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  color: #a27686;
+}
+
+.pin-message.error {
+  color: var(--danger);
+
+  animation: shake .25s ease;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+
+}
+
+
+/* =========================================================
+   PHOTO SLIDER
+========================================================= */
+
+.photo-page {
+  width: 100%;
+}
+
+.photo-slider {
+  width: 100%;
+
+  margin-top: 17px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background: #fff0f5;
+
+  border: 1px solid #ffc3d3;
+
+  box-shadow: 0 7px 0 #ffdae5;
+
+  touch-action: pan-y;
+}
+
+.photo-track {
+  display: flex;
+
+  width: 100%;
+
+  transition:
+    transform .45s cubic-bezier(.2,.8,.2,1);
+
+  will-change: transform;
+}
+
+.photo-slide {
+  min-width: 100%;
+
+  padding: 12px;
+}
+
+.photo-slide img {
+  display: block;
+
+  width: 100%;
+
+  height: 390px;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  border-radius: 16px;
+
+  background: #ffe9f0;
+
+  border: 2px solid white;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+.photo-number {
+  margin-top: 9px;
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+  color: var(--pink-dark);
+}
+
+.photo-controls {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 13px;
+}
+
+.photo-btn {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: white;
+
+  color: var(--pink);
+
+  border: 1px solid #ffc0d2;
+
+  font-size: 18px;
+
+  font-weight: 900;
+
+  box-shadow: 0 3px 0 #ffd9e4;
+
+  transition: .15s;
+}
+
+.photo-btn:active {
+  transform: translateY(3px);
+
+  box-shadow: none;
+}
+
+.photo-dots {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 5px;
+}
+
+.photo-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ffc4d4;
+
+  transition: .25s;
+
+  cursor: pointer;
+}
+
+.photo-dot.active {
+  width: 18px;
+
+  border-radius: 20px;
+
+  background: var(--pink);
+}
+
+.swipe-hint {
+  margin-top: 8px;
+
+  font-size: 10px;
+
+  color: #a47a89;
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope-area {
+  width: 100%;
+
+  height: 230px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 8px 0 0;
+
+  perspective: 1000px;
+}
+
+.envelope {
+  width: min(250px, 85%);
+  height: 155px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  filter:
+    drop-shadow(
+      0 12px 12px rgba(232,62,115,.18)
+    );
+
+  isolation: isolate;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.env-back {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  background: #ffd0dd;
+
+  border: 1px solid #ff9fbb;
+
+  border-radius: 10px;
+}
+
+.letter {
+  position: absolute;
+
+  z-index: 1;
+
+  left: 12px;
+  right: 12px;
+
+  bottom: 5px;
+
+  height: 132px;
+
+  padding: 12px 8px;
+
+  background: #ffffff;
+
+  border: 1px solid #ffd2df;
+
+  border-radius: 8px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  transition:
+    transform .75s cubic-bezier(.2,.8,.2,1),
+    bottom .75s cubic-bezier(.2,.8,.2,1);
+}
+
+.letter img {
+  display: block;
+
+  width: 70px;
+  height: 70px;
+
+  object-fit: contain;
+}
+
+.letter p {
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  color: var(--pink-dark);
+}
+
+.env-front {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  border-radius: 10px;
+
+  background: var(--pink);
+
+  clip-path: polygon(
+    0 0,
+    50% 54%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+.env-flap {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 4;
+
+  border-radius: 10px;
+
+  background: var(--pink-light);
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 57%
+  );
+
+  transform-origin: 50% 0%;
+
+  transition:
+    transform .55s ease,
+    z-index 0s .28s;
+
+  backface-visibility: hidden;
+}
+
+.seal {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 54%;
+  left: 50%;
+
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  border: 2px solid white;
+
+  background: var(--pink-dark);
+
+  color: white;
+
+  font-size: 0;
+
+  box-shadow:
+    0 3px 8px rgba(0,0,0,.18);
+
+  transition:
+    opacity .25s,
+    transform .25s;
+}
+
+.seal::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+
+  background-image: url("icon2.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.envelope.open .env-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .letter {
+  bottom: 55px;
+  transform: translateY(-22px);
+}
+
+.envelope.open .seal {
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.5);
+}
+
+.envelope:focus-visible {
+  outline: 3px solid var(--pink);
+  outline-offset: 7px;
+}
+
+.tap-hint {
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color: #9d7080;
+}
+
+
+/* =========================================================
+   MESSAGE CARD
+========================================================= */
+
+.message-card {
+  width: 100%;
+
+  max-height: 390px;
+
+  margin-top: 14px;
+
+  padding: 20px 16px;
+
+  position: relative;
+
+  overflow-y: auto;
+
+  background:
+    linear-gradient(
+      150deg,
+      #fff8fa,
+      #ffe7ee
+    );
+
+  border: 1px solid #ffc7d6;
+
+  border-radius: 23px;
+
+  box-shadow: 0 7px 0 #ffdae5;
+
+  scrollbar-width: thin;
+}
+
+.message-card::before,
+.message-card::after {
+  content: "✧";
+
+  position: absolute;
+
+  color: var(--pink);
+
+  font-size: 22px;
+}
+
+.message-card::before {
+  top: 8px;
+  left: 12px;
+}
+
+.message-card::after {
+  right: 12px;
+  bottom: 8px;
+}
+
+.final-sticker {
+  width: 105px;
+  height: 105px;
+
+  object-fit: contain;
+
+  margin-bottom: 8px;
+}
+
+.message-card h2 {
+  font-size: 23px;
+
+  margin-bottom: 11px;
+}
+
+.message-card p {
+  font-family: "Quicksand", sans-serif;
+
+  font-size: 12px;
+
+  line-height: 1.9;
+
+  color: #795466;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   TYPING
+========================================================= */
+
+.typing-text {
+  white-space: normal;
+}
+
+.typing-cursor {
+  display: inline-block;
+
+  width: 2px;
+
+  height: 15px;
+
+  margin-left: 2px;
+
+  vertical-align: -2px;
+
+  background: var(--pink);
+
+  animation: cursorBlink .7s infinite;
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================================================
+   CALENDAR PAGE
+========================================================= */
+
+.calendar-page {
+  width: 100%;
+}
+
+.calendar-box {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 20px 15px 24px;
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff8fa,
+      #ffe6ee
+    );
+
+  border: 1px solid #ffc3d4;
+
+  box-shadow:
+    0 8px 0 #ffd9e4;
+}
+
+.calendar-icon {
+  width: 230px;
+  height: 230px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff0f5,
+      #ffd8e4
+    );
+
+  border: 2px dashed var(--pink-border);
+
+  overflow: hidden;
+
+  animation: calendarFloat 3s ease-in-out infinite;
+}
+
+.calendar-icon img {
+  width: 88%;
+  height: 88%;
+
+  object-fit: contain;
+}
+
+@keyframes calendarFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+
+}
+
+.calendar-title {
+  margin-top: 18px;
+
+  font-size: 19px;
+
+  font-weight: 900;
+
+  color: var(--pink-dark);
+}
+
+.calendar-subtitle {
+  margin-top: 7px;
+
+  font-family: "Quicksand", sans-serif;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+.float-heart {
+  position: fixed;
+
+  z-index: 10;
+
+  bottom: -40px;
+
+  pointer-events: none;
+
+  color: var(--pink);
+
+  animation:
+    floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(0)
+      rotate(0);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translateY(-105vh)
+      rotate(40deg);
+  }
+
+}
+
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  body {
+    padding: 9px;
+  }
+
+  .app {
+    max-width: 365px;
+  }
+
+  .page {
+    min-height: 505px;
+
+    padding:
+      24px
+      18px;
+  }
+
+  .photo-slide img {
+    height: 350px;
+  }
+
+  .message-card {
+    max-height: 370px;
+  }
+
+  .calendar-icon {
+    width: 210px;
+    height: 210px;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .photo-slide img {
+    height: 330px;
+  }
+
+  .photo-slide {
+    padding: 10px;
+  }
+
+  .message-card {
+    max-height: 350px;
+  }
+
+  .calendar-icon {
+    width: 190px;
+    height: 190px;
+  }
+
+}
+
+@media (max-height: 720px) {
+
+  body {
+    align-items: start;
+  }
+
+  .app {
+    margin: 6px auto;
+  }
+
+  .page {
+    min-height: 475px;
+  }
+
+  .photo-slide img {
+    height: 340px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+
+    transition-duration: .01ms !important;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+
+<audio
+  id="bgMusic"
+  src="music.mp3"
+  loop
+  preload="auto">
+</audio>
+
+
+<!-- =========================================================
+     CONFETTI
+========================================================= -->
+
+<canvas
+  id="confettiCanvas"
+  aria-hidden="true">
+</canvas>
+
+
+<!-- =========================================================
+     APP
+========================================================= -->
+
+<main class="app">
+
+
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+<header class="topbar">
+
+  <div class="brand">
+
+    <span class="top-heart">
+
+      hati kamu
+      <span id="topHeartPercent">0%</span>
+
+    </span>
+
+  </div>
+
+
+  <div
+    class="counter"
+    id="counter">
+
+    01 / 07
+
+  </div>
+
+</header>
+
+
+<div class="progress">
+
+  <div
+    class="progress-fill"
+    id="progressFill">
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PAGE 1
+========================================================= -->
+
+<section
+  class="page active"
+  id="page1">
+
+  <div class="tag">
+    happy anniversary ♡
+  </div>
+
+
+  <!-- ICON DARI KAMU -->
+  <div class="sticker-wrap">
+
+    <img
+      class="sticker"
+      src="box.gif"
+      alt="Icon dari kamu">
+
+  </div>
+
+
+  <h1>
+    Haii
+    <span>Sayang ♡</span>
+  </h1>
+
+
+  <div class="message-card">
+
+    <p>
+      Selamat anniversary ya. Nggak terasa kita udah sejauh ini,
+      padahal kita jalaninnya LDR. Jauh secara jarak, tapi anehnya
+      hati aku nggak pernah ngerasa jauh dari kamu.
+    </p>
+
+  </div>
+
+
+  <button
+    class="primary"
+    onclick="goToPage(2)">
+
+    lanjut sayang →
+
+  </button>
+
+
+  <p class="note">
+    made with love, just for you ♡
+  </p>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 2 - PIN
+========================================================= -->
+
+<section
+  class="page"
+  id="page2">
+
+  <div class="tag">
+    our little secret
+  </div>
+
+
+  <div class="password-card">
+
+    <!-- ICON DARI KAMU -->
+    <div class="lock-icon">
+
+      <img
+        src="icon2.gif"
+        alt="Icon password">
+
+    </div>
+
+
+    <h1>
+
+      what's the
+      <span>password?</span>
+
+    </h1>
+
+
+    <p class="description">
+
+      masukkan pin rahasia untuk lanjut ke cerita kita ♡
+
+    </p>
+
+
+    <div
+      class="pin-display"
+      id="pinDisplay">
+
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+      <div class="pin-dot"></div>
+
+    </div>
+
+
+    <div class="keypad">
+
+      <button
+        class="key"
+        onclick="pressKey('1')">
+        1
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('2')">
+        2
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('3')">
+        3
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('4')">
+        4
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('5')">
+        5
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('6')">
+        6
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('7')">
+        7
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('8')">
+        8
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('9')">
+        9
+      </button>
+
+      <button
+        class="key clear"
+        onclick="clearPin()">
+        C
+      </button>
+
+      <button
+        class="key"
+        onclick="pressKey('0')">
+        0
+      </button>
+
+      <button
+        class="key enter"
+        onclick="checkPin()">
+        ✓
+      </button>
+
+    </div>
+
+
+    <div
+      class="pin-message"
+      id="pinMessage">
+
+      clue: tanggal jadian ♡
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="secondary"
+    onclick="goToPage(1)">
+
+    ← back
+
+  </button>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 3 - PHOTO
+========================================================= -->
+
+<section
+  class="page photo-page"
+  id="page3">
+
+  <div class="tag">
+    little memories
+  </div>
+
+
+  <h1>
+
+    our little
+    <span>moments ♡</span>
+
+  </h1>
+
+
+  <div
+    class="photo-slider"
+    id="photoSlider">
+
+    <div
+      class="photo-track"
+      id="photoTrack">
+
+
+      <div class="photo-slide">
+
+        <img
+          src="foto1.jpg"
+          alt="Foto 1"
+          draggable="false">
+
+        <div class="photo-number">
+          memory 01
+        </div>
+
+      </div>
+
+
+      <div class="photo-slide">
+
+        <img
+          src="foto2.jpg"
+          alt="Foto 2"
+          draggable="false">
+
+        <div class="photo-number">
+          memory 02
+        </div>
+
+      </div>
+
+
+      <div class="photo-slide">
+
+        <img
+          src="foto3.jpg"
+          alt="Foto 3"
+          draggable="false">
+
+        <div class="photo-number">
+          memory 03
+        </div>
+
+      </div>
+
+
+      <div class="photo-slide">
+
+        <img
+          src="foto4.jpg"
+          alt="Foto 4"
+          draggable="false">
+
+        <div class="photo-number">
+          memory 04
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="photo-controls">
+
+    <button
+      class="photo-btn"
+      onclick="prevPhoto()">
+
+      ←
+
+    </button>
+
+
+    <div
+      class="photo-dots"
+      id="photoDots">
+    </div>
+
+
+    <button
+      class="photo-btn"
+      onclick="nextPhoto()">
+
+      →
+
+    </button>
+
+  </div>
+
+
+  <p class="swipe-hint">
+
+    ✦ swipe untuk melihat foto berikutnya ✦
+
+  </p>
+
+
+  <button
+    class="primary"
+    onclick="goToPage(4)">
+
+    next ♡
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="goToPage(2)">
+
+    ← back
+
+  </button>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 4 - ENVELOPE
+========================================================= -->
+
+<section
+  class="page"
+  id="page4">
+
+  <div class="tag">
+    sealed with love
+  </div>
+
+
+  <h1>
+
+    you've got
+    <span>mail!</span>
+
+  </h1>
+
+
+  <p class="description">
+
+    tap bagian tengah amplop untuk membuka suratnya ♡
+
+  </p>
+
+
+  <div class="envelope-area">
+
+    <div
+      class="envelope"
+      id="envelope"
+
+      role="button"
+      tabindex="0"
+
+      aria-label="Buka amplop"
+
+      onclick="openEnvelope()"
+
+      onkeydown="
+        if(event.key === 'Enter' || event.key === ' '){
+          event.preventDefault();
+          openEnvelope();
+        }
+      ">
+
+
+      <div class="env-back"></div>
+
+
+      <div class="letter">
+
+        <!-- ICON DARI KAMU -->
+        <img
+          src="icon3.gif"
+          alt="Icon surat">
+
+        <p>
+          for you ♡
+        </p>
+
+      </div>
+
+
+      <div class="env-front"></div>
+
+      <div class="env-flap"></div>
+
+      <div class="seal"></div>
+
+
+    </div>
+
+  </div>
+
+
+  <p
+    class="tap-hint"
+    id="tapHint">
+
+    ✧ tap the envelope ✧
+
+  </p>
+
+
+  <button
+    class="primary hidden"
+    id="continueButton"
+    onclick="goToPage(5)">
+
+    baca pesanku ♡
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="goToPage(3)">
+
+    ← back
+
+  </button>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 5 - MESSAGE
+========================================================= -->
+
+<section
+  class="page"
+  id="page5">
+
+  <div class="tag">
+    a message from my heart
+  </div>
+
+
+  <h1>
+
+    a little note
+    <span>for you</span>
+
+  </h1>
+
+
+  <div class="message-card">
+
+    <!-- ICON DARI KAMU -->
+    <img
+      class="final-sticker"
+      src="icon4.gif"
+      alt="Icon pesan">
+
+
+    <h2>
+      sayangg ♡
+    </h2>
+
+
+    <p
+      class="typing-text"
+      id="typingText">
+    </p>
+
+  </div>
+
+
+  <button
+    class="primary"
+    id="surpriseButton"
+    onclick="revealSurprise()">
+
+   next ♡
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="goToPage(4)">
+
+    ← back
+
+  </button>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 6 - CALENDAR
+========================================================= -->
+
+<section
+  class="page calendar-page"
+  id="page6">
+
+  <div class="tag">
+    our special date
+  </div>
+
+
+  <h1>
+
+    our
+    <span>calendar ♡</span>
+
+  </h1>
+
+
+  <div class="calendar-box">
+
+    <!-- =====================================================
+         ICON KALENDER DARI KAMU
+         
+         GANTI FILE:
+         calendar.webp
+         
+         DENGAN ICON KALENDER MILIK KAMU
+    ====================================================== -->
+
+    <div class="calendar-icon">
+
+      <img
+        src="kalender.png"
+        alt="Icon kalender dari kamu">
+
+    </div>
+
+
+    <div class="calendar-title">
+
+      our special day ♡
+
+    </div>
+
+
+    <div class="calendar-subtitle">
+
+      satu tanggal yang selalu punya tempat
+      spesial di hati aku.
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="primary"
+    onclick="goToPage(7)">
+
+    satu hal terakhir →
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="goToPage(5)">
+
+    ← back
+
+  </button>
+
+</section>
+
+
+<!-- =========================================================
+     PAGE 7 - FINAL
+========================================================= -->
+
+<section
+  class="page"
+  id="page7">
+
+  <div class="tag">
+    one last thing ♡
+  </div>
+
+
+  <div class="sticker-wrap">
+
+    <!-- ICON DARI KAMU -->
+    <img
+      class="sticker"
+      src="icon5.gif"
+      alt="Icon terakhir">
+
+  </div>
+
+
+  <h1>
+
+   HAPPY
+    <span>ANNIVERSARY</span>
+
+  </h1>
+
+
+  <div class="message-card">
+
+    <p>
+
+      Sekali lagi selamat anniversary ya sayang.
+      Aku sayang kamu, lebih dari yang bisa aku jelasin
+      lewat chat ini. Terima kasih udah mau bertahan
+      sejauh ini sama aku. Jangan kemana-mana ya,
+      tetep di sini, di samping aku, meskipun sekarang
+      masih lewat layar.
+      <br><br>
+      I love you, today, tomorrow, and every day after.
+
+    </p>
+
+  </div>
+
+
+  <button
+    class="primary"
+    onclick="finishSurprise()">
+
+    I love you ♡
+
+  </button>
+
+
+  <button
+    class="secondary"
+    onclick="goToPage(6)">
+
+    ← back
+
+  </button>
+
+</section>
+
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   ELEMENT
+========================================================= */
+
+const counter =
+  document.getElementById("counter");
+
+const progressFill =
+  document.getElementById("progressFill");
+
+const envelope =
+  document.getElementById("envelope");
+
+const continueButton =
+  document.getElementById("continueButton");
+
+const tapHint =
+  document.getElementById("tapHint");
+
+const surpriseButton =
+  document.getElementById("surpriseButton");
+
+const topHeartPercent =
+  document.getElementById("topHeartPercent");
+
+const typingText =
+  document.getElementById("typingText");
+
+const bgMusic =
+  document.getElementById("bgMusic");
+
+
+/* =========================================================
+   TOTAL PAGE
+========================================================= */
+
+const TOTAL_PAGES = 7;
+
+
+/* =========================================================
+   CURRENT PAGE
+========================================================= */
+
+let currentPage = 1;
+
+
+/* =========================================================
+   HEART
+========================================================= */
+
+let heartValue = 0;
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+const CORRECT_PIN = "0611";
+
+let enteredPin = "";
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+function goToPage(pageNumber) {
+
+  if (
+    pageNumber < 1 ||
+    pageNumber > TOTAL_PAGES
+  ) {
+    return;
+  }
+
+
+  document
+    .querySelectorAll(".page")
+    .forEach(page => {
+
+      page.classList.remove("active");
+
+    });
+
+
+  const targetPage =
+    document.getElementById(
+      "page" + pageNumber
+    );
+
+
+  if (!targetPage) {
+    return;
+  }
+
+
+  targetPage.classList.add("active");
+
+
+  currentPage = pageNumber;
+
+
+  counter.textContent =
+    String(pageNumber).padStart(2, "0")
+    + " / "
+    + String(TOTAL_PAGES).padStart(2, "0");
+
+
+  progressFill.style.width =
+    ((pageNumber / TOTAL_PAGES) * 100) + "%";
+
+
+  updateHeart(pageNumber);
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+
+  createFloatingHearts(3);
+
+
+  if (pageNumber === 5) {
+    startTyping();
+  }
+
+}
+
+
+/* =========================================================
+   HEART UPDATE
+========================================================= */
+
+function updateHeart(pageNumber) {
+
+  heartValue =
+    Math.min(
+      100,
+      Math.round(
+        (pageNumber / TOTAL_PAGES) * 100
+      )
+    );
+
+
+  topHeartPercent.textContent =
+    heartValue + "%";
+
+}
+
+
+/* =========================================================
+   START SURPRISE
+========================================================= */
+
+function startSurprise() {
+
+  try {
+
+    bgMusic.volume = 0.5;
+
+    bgMusic.play().catch(() => {});
+
+  } catch (error) {}
+
+
+  goToPage(2);
+
+  createFloatingHearts(7);
+
+}
+
+
+/* =========================================================
+   PIN
+========================================================= */
+
+function pressKey(number) {
+
+  if (enteredPin.length >= 4) {
+    return;
+  }
+
+
+  enteredPin += number;
+
+
+  updatePinDisplay();
+
+
+  if (enteredPin.length === 4) {
+
+    setTimeout(() => {
+
+      checkPin();
+
+    }, 150);
+
+  }
+
+}
+
+
+function updatePinDisplay() {
+
+  const dots =
+    document.querySelectorAll(".pin-dot");
+
+
+  dots.forEach((dot, index) => {
+
+    dot.classList.toggle(
+      "active",
+      index < enteredPin.length
+    );
+
+    dot.classList.remove("error");
+
+  });
+
+}
+
+
+function clearPin() {
+
+  enteredPin = "";
+
+  updatePinDisplay();
+
+
+  document.getElementById(
+    "pinMessage"
+  ).textContent =
+    "clue: tanggal jadian kita ♡";
+
+}
+
+
+function checkPin() {
+
+  const message =
+    document.getElementById(
+      "pinMessage"
+    );
+
+
+  if (enteredPin === CORRECT_PIN) {
+
+    message.textContent =
+      "pin benar ♡";
+
+
+    message.classList.remove("error");
+
+
+    createFloatingHearts(10);
+
+
+    setTimeout(() => {
+
+      goToPage(3);
+
+    }, 500);
+
+
+    return;
+  }
+
+
+  message.textContent =
+    "pin-nya belum tepat, coba lagi ya ♡";
+
+
+  message.classList.add("error");
+
+
+  document
+    .querySelectorAll(".pin-dot")
+    .forEach(dot => {
+
+      dot.classList.add("error");
+
+    });
+
+
+  setTimeout(() => {
+
+    enteredPin = "";
+
+    updatePinDisplay();
+
+    message.classList.remove("error");
+
+    message.textContent =
+      "clue: tanggal yang cuma kita yang tahu ♡";
+
+  }, 800);
+
+}
+
+
+/* =========================================================
+   PHOTO SLIDER
+========================================================= */
+
+const photoTrack =
+  document.getElementById("photoTrack");
+
+const photoSlides =
+  document.querySelectorAll(
+    ".photo-slide"
+  );
+
+const photoDots =
+  document.getElementById("photoDots");
+
+
+let currentPhoto = 0;
+
+
+/* CREATE DOTS */
+
+photoSlides.forEach(
+  (_, index) => {
+
+    const dot =
+      document.createElement("div");
+
+    dot.className =
+      "photo-dot";
+
+    if (index === 0) {
+      dot.classList.add("active");
+    }
+
+    dot.onclick = () => {
+
+      currentPhoto = index;
+
+      updatePhotoSlider();
+
+    };
+
+    photoDots.appendChild(dot);
+
+  }
+);
+
+
+function updatePhotoSlider() {
+
+  photoTrack.style.transform =
+    `translateX(-${currentPhoto * 100}%)`;
+
+
+  document
+    .querySelectorAll(".photo-dot")
+    .forEach(
+      (dot, index) => {
+
+        dot.classList.toggle(
+          "active",
+          index === currentPhoto
+        );
+
+      }
+    );
+
+}
+
+
+function nextPhoto() {
+
+  currentPhoto++;
+
+  if (
+    currentPhoto >=
+    photoSlides.length
+  ) {
+
+    currentPhoto = 0;
+
+  }
+
+
+  updatePhotoSlider();
+
+}
+
+
+function prevPhoto() {
+
+  currentPhoto--;
+
+  if (currentPhoto < 0) {
+
+    currentPhoto =
+      photoSlides.length - 1;
+
+  }
+
+
+  updatePhotoSlider();
+
+}
+
+
+/* =========================================================
+   SWIPE PHOTO
+========================================================= */
+
+const photoSlider =
+  document.getElementById(
+    "photoSlider"
+  );
+
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+
+photoSlider.addEventListener(
+  "touchstart",
+  event => {
+
+    touchStartX =
+      event.changedTouches[0].screenX;
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+photoSlider.addEventListener(
+  "touchend",
+  event => {
+
+    touchEndX =
+      event.changedTouches[0].screenX;
+
+
+    const difference =
+      touchStartX - touchEndX;
+
+
+    if (Math.abs(difference) < 40) {
+      return;
+    }
+
+
+    if (difference > 0) {
+
+      nextPhoto();
+
+    } else {
+
+      prevPhoto();
+
+    }
+
+  },
+  {
+    passive: true
+  }
+);
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+let envelopeOpened = false;
+
+
+function openEnvelope() {
+
+  if (envelopeOpened) {
+    return;
+  }
+
+
+  envelope.classList.add("open");
+
+  envelopeOpened = true;
+
+
+  tapHint.textContent =
+    "suratnya sudah terbuka ♡";
+
+
+  continueButton.classList.remove(
+    "hidden"
+  );
+
+
+  createFloatingHearts(8);
+
+}
+
+
+/* =========================================================
+   TYPING MESSAGE
+========================================================= */
+
+const messageText = `Aku masih inget awal kita gimana, dan sekarang liat kita udah bisa ngelewatin banyak hal bareng. Berantem pernah, salah paham pernah, kangen yang sampe sesek banget juga pernah. Tapi kita selalu pilih buat tetep bertahan, bukan nyerah. Dan buat aku, itu yang bikin hubungan kita istimewa.
+
+Makasih ya udah jadi cewek baik yang selalu hargain aku. Makasih udah mau sabar sama aku yang kadang masih belajar buat jadi cowok yang lebih dewasa buat kamu. Makasih udah tetep setia meskipun kita nggak bisa ketemu kapan aja kita mau.
+
+Kamu anak rumahan yang dunianya kecil, tapi kamu mau ngebagiin dunia kecil itu buat aku, dan itu hal paling berharga yang pernah aku punya.
+
+Jujur, LDR itu nggak gampang. Ada malam-malam dimana aku cuma bisa liatin foto kamu, dengerin suara kamu lewat telfon, dan berharap bisa ada di samping kamu sekarang juga.
+
+Ada pagi dimana aku bangun dan hal pertama yang aku cari itu kabar kamu. Tapi semua rindu itu jadi worth it karena aku tau, di ujung jarak ini ada kamu yang juga lagi berjuang sama kayak aku.
+
+Aku nggak janji bakal jadi cowok yang sempurna, karena aku tau aku nggak akan pernah jadi sempurna. Tapi aku janji satu hal: aku bakal terus belajar, terus dengerin kamu, terus hargain kamu, dan terus pilih kamu setiap hari, meskipun jarak lagi nguji kita.
+
+Semoga di anniversary ini, Tuhan makin deketin kita, makin kuatin kita, dan suatu hari nanti nggak ada lagi kata LDR di antara kita. Yang ada cuma kita, serumah, bangun pagi bareng, dan nggak perlu lagi tidur cuma lewat slepcal.`;
+
+
+let typingStarted = false;
+
+
+function startTyping() {
+
+  if (typingStarted) {
+    return;
+  }
+
+
+  typingStarted = true;
+
+
+  typingText.innerHTML =
+    '<span class="typing-cursor"></span>';
+
+
+  let index = 0;
+
+
+  const cursor =
+    typingText.querySelector(
+      ".typing-cursor"
+    );
+
+
+  function typeNext() {
+
+    if (index >= messageText.length) {
+
+      cursor.remove();
+
+      return;
+
+    }
+
+
+    const char =
+      messageText.charAt(index);
+
+
+    cursor.insertAdjacentText(
+      "beforebegin",
+      char
+    );
+
+
+    index++;
+
+
+    let speed = 18;
+
+
+    if (char === ".") {
+      speed = 180;
+    }
+
+    if (char === ",") {
+      speed = 90;
+    }
+
+    if (char === "\n") {
+      speed = 250;
+    }
+
+
+    setTimeout(
+      typeNext,
+      speed
+    );
+
+  }
+
+
+  typeNext();
+
+}
+
+
+/* =========================================================
+   REVEAL SURPRISE
+========================================================= */
+
+function revealSurprise() {
+
+  createFloatingHearts(15);
+
+  burstConfetti();
+
+  goToPage(6);
+
+}
+
+
+/* =========================================================
+   FINISH
+========================================================= */
+
+function finishSurprise() {
+
+  heartValue = 100;
+
+  topHeartPercent.textContent =
+    "100%";
+
+
+  createFloatingHearts(25);
+
+  burstConfetti();
+
+
+  const button =
+    document.querySelector(
+      "#page7 .primary"
+    );
+
+
+  button.textContent =
+    "I LOVE YOU ♡";
+
+
+  setTimeout(() => {
+
+    button.textContent =
+      "♡ forever & always ♡";
+
+  }, 1800);
+
+}
+
+
+/* =========================================================
+   FLOATING HEARTS
+========================================================= */
+
+function createFloatingHearts(amount = 5) {
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
+  ) {
+
+    setTimeout(() => {
+
+      const heart =
+        document.createElement(
+          "div"
+        );
+
+
+      heart.className =
+        "float-heart";
+
+
+      heart.textContent =
+        Math.random() > .5
+          ? "♥"
+          : "♡";
+
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+
+      heart.style.fontSize =
+        (14 + Math.random() * 20)
+        + "px";
+
+
+      heart.style.animationDuration =
+        (3 + Math.random() * 2)
+        + "s";
+
+
+      document.body.appendChild(
+        heart
+      );
+
+
+      setTimeout(() => {
+
+        heart.remove();
+
+      }, 5000);
+
+    }, i * 120);
+
+  }
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+const canvas =
+  document.getElementById(
+    "confettiCanvas"
+  );
+
+const ctx =
+  canvas.getContext("2d");
+
+
+let confettiPieces = [];
+let confettiAnimation = null;
+
+
+function resizeCanvas() {
+
+  canvas.width =
+    window.innerWidth *
+    devicePixelRatio;
+
+  canvas.height =
+    window.innerHeight *
+    devicePixelRatio;
+
+  ctx.setTransform(
+    devicePixelRatio,
+    0,
+    0,
+    devicePixelRatio,
+    0,
+    0
+  );
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+resizeCanvas();
+
+
+function burstConfetti() {
+
+  confettiPieces = [];
+
+
+  const colors = [
+    "#ff5f8f",
+    "#ff91b0",
+    "#e83e73",
+    "#ffc2d4",
+    "#ffcad9",
+    "#ffffff"
+  ];
+
+
+  for (
+    let i = 0;
+    i < 120;
+    i++
+  ) {
+
+    confettiPieces.push({
+
+      x:
+        window.innerWidth / 2,
+
+      y:
+        window.innerHeight / 3,
+
+      vx:
+        (Math.random() - .5)
+        * 12,
+
+      vy:
+        (Math.random() - 1.2)
+        * 13,
+
+      size:
+        4 + Math.random() * 6,
+
+      rotation:
+        Math.random() * 360,
+
+      rotationSpeed:
+        (Math.random() - .5)
+        * 12,
+
+      gravity:
+        .28 + Math.random() * .15,
+
+      color:
+        colors[
+          Math.floor(
+            Math.random() *
+            colors.length
+          )
+        ],
+
+      life:
+        1
+
+    });
+
+  }
+
+
+  if (!confettiAnimation) {
+
+    animateConfetti();
+
+  }
+
+}
+
+
+function animateConfetti() {
+
+  ctx.clearRect(
+    0,
+    0,
+    window.innerWidth,
+    window.innerHeight
+  );
+
+
+  confettiPieces =
+    confettiPieces.filter(
+      piece =>
+        piece.life > 0
+    );
+
+
+  confettiPieces.forEach(
+    piece => {
+
+      piece.x += piece.vx;
+
+      piece.y += piece.vy;
+
+      piece.vy += piece.gravity;
+
+      piece.rotation +=
+        piece.rotationSpeed;
+
+      piece.life -= .008;
+
+
+      ctx.save();
+
+
+      ctx.translate(
+        piece.x,
+        piece.y
+      );
+
+
+      ctx.rotate(
+        piece.rotation *
+        Math.PI / 180
+      );
+
+
+      ctx.globalAlpha =
+        Math.max(
+          0,
+          piece.life
+        );
+
+
+      ctx.fillStyle =
+        piece.color;
+
+
+      ctx.fillRect(
+        -piece.size / 2,
+        -piece.size / 2,
+        piece.size,
+        piece.size * 1.5
+      );
+
+
+      ctx.restore();
+
+    }
+  );
+
+
+  if (confettiPieces.length > 0) {
+
+    confettiAnimation =
+      requestAnimationFrame(
+        animateConfetti
+      );
+
+  } else {
+
+    confettiAnimation = null;
+
+    ctx.clearRect(
+      0,
+      0,
+      window.innerWidth,
+      window.innerHeight
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   START FLOATING HEARTS
+========================================================= */
+
+setInterval(() => {
+
+  if (
+    document.visibilityState ===
+    "visible"
+  ) {
+
+    createFloatingHearts(1);
+
+  }
+
+}, 3500);
+
+
+/* =========================================================
+   MUSIC AUTOPLAY FALLBACK
+========================================================= */
+
+document.addEventListener(
+  "click",
+  () => {
+
+    if (
+      bgMusic.paused
+    ) {
+
+      bgMusic.volume = 0.5;
+
+      bgMusic.play().catch(
+        () => {}
+      );
+
+    }
+
+  },
+  {
+    once: true
+  }
+);
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+updateHeart(1);
+
+</script>
+
+</body>
+</html>
